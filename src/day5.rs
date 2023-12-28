@@ -14,13 +14,9 @@ async fn slicing_the_loop(
     stuff: Query<Stuff>,
     extract::Json(payload): extract::Json<Vec<String>>,
 ) -> impl IntoResponse {
-    println!("this is a new request");
-    println!("query paramts: {:?}, vec: {:?}", stuff, payload);
     let offset = stuff.offset.unwrap_or(0).clamp(0, payload.len());
     let limit = stuff.limit.unwrap_or(payload.len()).clamp(0, payload.len());
     let limit = (limit + offset).clamp(0, payload.len());
-
-    println!("offset: {}, limit: {}", offset, limit);
 
     let result = payload.as_slice()[offset..limit].to_vec();
     if let Some(splitting) = stuff.split {

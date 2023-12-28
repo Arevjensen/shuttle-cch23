@@ -8,7 +8,6 @@ pub fn day2() -> Router {
 }
 
 async fn contest(extract::Json(payload): extract::Json<Vec<CompetitionReindeer>>) -> Json<Records> {
-    println!("{:?}", payload);
     let fastest = payload
         .iter()
         .max_by(|a, b| a.speed.partial_cmp(&b.speed).unwrap())

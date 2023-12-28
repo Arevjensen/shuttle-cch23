@@ -13,8 +13,6 @@ async fn count_elves(body: String) -> impl IntoResponse {
         .inspect(|x| println!("{}", String::from_utf8(x.to_vec()).unwrap()))
         .count();
 
-    println!("in str {}, elf count: {}", body, elf_count);
-
     Json(Counter {
         elf: elf_count,
         elf_shelf: 0,
