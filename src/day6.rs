@@ -10,7 +10,6 @@ async fn count_elves(body: String) -> impl IntoResponse {
         .as_bytes()
         .windows(3)
         .filter(|x| String::from_utf8(x.to_vec()).unwrap() == r#"elf"#)
-        .inspect(|x| println!("{}", String::from_utf8(x.to_vec()).unwrap()))
         .count();
 
     Json(Counter {
